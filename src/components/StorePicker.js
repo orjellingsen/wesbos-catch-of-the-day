@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { getFunName } from '../helpers'
 
 class StorePicker extends Component {
+  static propTypes = {
+    history: PropTypes.func.isRequired,
+  }
+
+  state = {
+    storeName: getFunName(),
+  }
+
   myInput = React.createRef()
 
   goToStore = e => {
     e.preventDefault()
-    const storeName = this.myInput.current.value
-    this.props.history.push(`/store/${storeName}`)
+    this.props.history.push(`/store/${this.state.storeName}`)
+  }
+
+  handleChange = e => {
+    this.setState({ [e.currentTarget.name]: e.target.value })
   }
 
   render() {
@@ -16,10 +28,11 @@ class StorePicker extends Component {
         <h2>Please Enter A Store</h2>
         <input
           type="text"
-          ref={this.myInput}
+          value={this.state.storeName}
+          onChange={this.handleChange}
+          name="storeName"
           required
           placeholder="Store Name"
-          defaultValue={getFunName()}
         />
         <button type="submit">Visit Store →</button>
       </form>
