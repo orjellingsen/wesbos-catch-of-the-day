@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { formatPrice } from '../helpers'
 
 class Order extends Component {
+  static propTypes = {
+    fishes: PropTypes.shape({}).isRequired,
+    order: PropTypes.shape({}).isRequired,
+    removeFromOrder: PropTypes.func.isRequired,
+  }
+
   renderOrder = key => {
-    const fish = this.props.fishes[key]
-    const count = this.props.order[key]
+    const { fishes, order, removeFromOrder } = this.props
+    const fish = fishes[key]
+    const count = order[key]
     const transitionOptions = {
       classNames: 'order',
       key,
@@ -31,12 +39,13 @@ class Order extends Component {
             </TransitionGroup>
             lbs {fish.name}
             {formatPrice(count * fish.price)}
-            <button onClick={() => this.props.removeFromOrder(key)}>&times;</button>
+            <button onClick={() => removeFromOrder(key)}>&times;</button>
           </span>
         </li>
       </CSSTransition>
     )
   }
+
   render() {
     const orderIds = Object.keys(this.props.order)
     const total = orderIds.reduce((prevTotal, key) => {
