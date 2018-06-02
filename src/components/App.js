@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import Header from './Header'
 import Inventory from './Inventory'
 import Order from './Order'
@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
-          <Header />
+          <Header tagline="Fresh Seasfood Market" />
         </div>
         <Inventory />
         <Order />
