@@ -1,15 +1,11 @@
 module.exports = {
+  parser: 'babel-eslint',
   env: {
     browser: true,
     es6: true,
-    node: true,
   },
   extends: ['airbnb', 'prettier', 'prettier/react'],
   parserOptions: {
-    ecmaFeatures: {
-      experimentalObjectRestSpread: true,
-      jsx: true,
-    },
     sourceType: 'module',
   },
   plugins: ['react', 'prettier'],
@@ -21,5 +17,7 @@ module.exports = {
     'react/display-name': 1,
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/react-in-jsx-scope': 0,
+    'react/prop-types': 0,
+    'react/prefer-stateless-function': 0,
   },
 }

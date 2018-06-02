@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import Header from './Header'
 import Inventory from './Inventory'
 import Order from './Order'
